@@ -6,6 +6,12 @@ Remove duplicate key member lines from sorted [NDJSON](http://ndjson.org/).
 
 [![Build Status](https://github.com/winebarrel/jluniq/workflows/CI/badge.svg)](https://github.com/winebarrel/jluniq/actions)
 
+## Installation
+
+```
+brew install winebarrel/jl/jluniq
+```
+
 ## Usage
 
 ```
