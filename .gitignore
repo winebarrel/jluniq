@@ -1,0 +1,6 @@
+/target
+/jluniq
+*.ndjson
+*.jsonl
+*.gz
+*.gz.sha1sum
