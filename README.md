@@ -1,6 +1,6 @@
 # jluniq
 
-Remove duplicate lines from sorted [NDJSON](http://ndjson.org/).
+Remove duplicate key member lines from sorted [NDJSON](http://ndjson.org/).
 
 **Important: NDJSON file must be sorted by the value of the uniq key member. (e.g. [jlsort](https://github.com/winebarrel/jlsort))**
 
