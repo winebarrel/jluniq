@@ -14,6 +14,7 @@ Usage: jluniq [OPTIONS] [FILE]
 Options:
     -k, --key KEY       JSON key to make it unique
     -g, --group         Group rows with the same value
+    -c, --count         Count lines
     -v, --version       Print version and exit
     -h, --help          Print usage and exit
 ```
@@ -51,6 +52,15 @@ Options:
 [3,{"id":3,"sub_id":31,"val":"jkl"}]
 [4,{"id":4,"sub_id":41,"val":"mno"}]
 [5,{"id":5,"sub_id":51,"val":"pqr"},{"id":5,"sub_id":52,"val":"slu"}]
+[6,1,{"id":6,"sub_id":61,"val":"vwz"}]
+
+% jluniq -c id data.ndjson
+[1,1]
+[2,2]
+[3,1]
+[4,1]
+[5,2]
+[6,1]
 ```
 
 ## Related Links

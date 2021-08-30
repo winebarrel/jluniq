@@ -7,7 +7,10 @@ use std::io;
 fn main() {
     let opts = cli::parse_opts();
 
-    let uniq_opts = ndjson::Opts { group: opts.group };
+    let uniq_opts = ndjson::Opts {
+        group: opts.group,
+        count: opts.count,
+    };
 
     if opts.file == "-" {
         let reader = io::BufReader::new(io::stdin());

@@ -8,6 +8,7 @@ pub(super) struct Options {
     pub file: String,
     pub key: String,
     pub group: bool,
+    pub count: bool,
 }
 
 fn print_usage(program: &str, opts: getopts::Options) {
@@ -22,6 +23,7 @@ pub(super) fn parse_opts() -> Options {
 
     opts.optopt("k", "key", "JSON key to make it unique", "KEY");
     opts.optflag("g", "group", "Group rows with the same value");
+    opts.optflag("c", "count", "Count lines");
     opts.optflag("v", "version", "Print version and exit");
     opts.optflag("h", "help", "Print usage and exit");
 
@@ -42,6 +44,7 @@ pub(super) fn parse_opts() -> Options {
     });
 
     let group = matches.opt_present("g");
+    let count = matches.opt_present("c");
 
     let file = match matches.free.len() {
         1 => matches.free[0].to_string(),
@@ -56,5 +59,6 @@ pub(super) fn parse_opts() -> Options {
         file: file,
         key: key,
         group: group,
+        count: count,
     }
 }

@@ -8,6 +8,7 @@ use std::io;
 
 pub(super) struct Opts {
     pub group: bool,
+    pub count: bool,
 }
 
 pub(super) fn uniq<R, O>(mut reader: R, key: &str, fout: O, opts: Opts) -> Result<()>
@@ -38,7 +39,7 @@ where
             let prev_val = prev_row.get(key).unwrap();
 
             if val != prev_val {
-                print_line(&mut writer, prev_val, &lines, opts.group)?;
+                print_line(&mut writer, prev_val, &lines, opts.group, opts.count)?;
                 lines.clear();
             }
         }
@@ -53,6 +54,7 @@ where
             prev.unwrap().get(key).unwrap(),
             &lines,
             opts.group,
+            opts.count,
         )?;
     }
 
@@ -87,17 +89,30 @@ where
     }
 }
 
-fn print_line<T>(writer: &mut T, val: &Value, lines: &Vec<Value>, group: bool) -> io::Result<()>
+fn print_line<T>(
+    writer: &mut T,
+    val: &Value,
+    lines: &Vec<Value>,
+    group: bool,
+    count: bool,
+) -> io::Result<()>
 where
     T: io::Write,
 {
     let row = if group {
-        let lines = lines
+        let csv = lines
             .iter()
             .map(|l| l.to_string())
             .collect::<Vec<String>>()
             .join(",");
-        format!("[{},{}]", val, lines)
+
+        if count {
+            format!("[{},{},{}]", val, lines.len(), csv)
+        } else {
+            format!("[{},{}]", val, csv)
+        }
+    } else if count {
+        format!("[{},{}]", val, lines.len())
     } else {
         lines.get(0).unwrap().to_string()
     };
