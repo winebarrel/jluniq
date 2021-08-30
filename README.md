@@ -6,6 +6,12 @@ Remove duplicate key member lines from sorted [NDJSON](http://ndjson.org/).
 
 [![Build Status](https://github.com/winebarrel/jluniq/workflows/CI/badge.svg)](https://github.com/winebarrel/jluniq/actions)
 
+## Installation
+
+```
+brew install winebarrel/jl/jluniq
+```
+
 ## Usage
 
 ```
@@ -52,7 +58,7 @@ Options:
 [3,{"id":3,"sub_id":31,"val":"jkl"}]
 [4,{"id":4,"sub_id":41,"val":"mno"}]
 [5,{"id":5,"sub_id":51,"val":"pqr"},{"id":5,"sub_id":52,"val":"slu"}]
-[6,1,{"id":6,"sub_id":61,"val":"vwz"}]
+[6,{"id":6,"sub_id":61,"val":"vwz"}]
 
 % jluniq -c id data.ndjson
 [1,1]
